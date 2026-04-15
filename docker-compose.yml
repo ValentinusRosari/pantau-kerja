@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: pantau-kerja-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: pantau_kerja
+      MYSQL_USER: pantau_user
+      MYSQL_PASSWORD: pantau_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=caching_sha2_password
+
+volumes:
+  mysql_data:
+    driver: local
